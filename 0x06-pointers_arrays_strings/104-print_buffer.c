@@ -1,53 +1,59 @@
 #include "main.h"
+#include <stdio.h>
+
 /**
-*print_buffer -  C function that prints the content of an
-*  inputted number of bytes from a buffer.
-* Prints 10 bytes per line.
-* Starts with the position of the first byte in hexadecimal (8 chars),
-* starting with `0`.
-* Each line shows the hexadecimal content (2 chars) of the buffer,
-* 2 bytes at a time, separated by a space.
-* Each line shows the content of the buffer.
-* Prints the byte if it is printable; if not, prints `.`.
-* Each line ends with a new line `\n`.
-* If the inputted byte size is 0 or less, the function only prints a new line.
-*@b: number of bytes
-*@size: size of the byte
-*/
-void print_buffer(char *b, int size)
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
 {
-	int i = 0, j;
+        char *n = "1234567892434574367823574575678477685785645685876876774586734734563456453743756756784458";
+        char *m = "9034790663470697234682914569346259634958693246597324659762347956349265983465962349569346";
+        char r[100];
+        char r2[10];
+        char r3[11];
+        char *res;
 
-	if (size < 0)
-	{
-		printf('\n');
-		return;
-	}
-
-	while (i < size)
-	{
-		if (i % 10 == 0)
-			printf("%08x: ", i);
-		for (j = i; j < i + 9; j += 2)
-		{
-			if ((j < size) && ((j + 1) < size))
-				printf("%02x%02x: ", b[j], b[j + 1]);
-			else
-			{
-				while (++j <= i + 10)
-					printf(" ");
-				printf(" ");
-			}
-		}
-		for (j = i; j < i + 9 && j < size; j++)
-		{
-			if (b[j] >= 32 && b[j] <= 126)
-				printf("%c", b[j]);
-			else
-				printf(".");
-		}
-		printf('\n');
-		i += 10;
-	}
+        res = infinite_add(n, m, r, 100);
+        if (res == 0)
+        {
+                printf("Error\n");
+        }
+        else
+        {
+                printf("%s + %s = %s\n", n, m, res);
+        }
+        n = "1234567890";
+        m = "1";
+        res = infinite_add(n, m, r2, 10);
+        if (res == 0)
+        {
+                printf("Error\n");
+        }
+        else
+        {
+                printf("%s + %s = %s\n", n, m, res);
+        }
+        n = "999999999";
+        m = "1";
+        res = infinite_add(n, m, r2, 10);
+        if (res == 0)
+        {
+                printf("Error\n");
+        }
+        else
+        {
+                printf("%s + %s = %s\n", n, m, res);
+        }
+        res = infinite_add(n, m, r3, 11);
+        if (res == 0)
+        {
+                printf("Error\n");
+        }
+        else
+        {
+                printf("%s + %s = %s\n", n, m, res);
+        }
+        return (0);
 }
-
